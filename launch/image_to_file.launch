@@ -10,7 +10,7 @@
   <arg name="dir_export_default" value="$(env PWD)/export" doc="path du repertoire d'export par défaut"/>  
   <arg name="dir_export_images" default="$(arg dir_export_default)/IMG_" doc="path du répertoire d'export pour les images"/>
 
-  <node pkg="sub_img_to_file" type="sub_img_to_file_node" name="record_android_images">
+  <node pkg="sub_img_to_file" type="sub_img_to_file_node" name="record_android_images" output="screen">
 	  <param name="prefix" value="$(arg dir_export_images)" />
 	  <param name="image_transport" value="compressed" />
 	  <param name="show_image" value="True" />

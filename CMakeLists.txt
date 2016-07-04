@@ -114,7 +114,7 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-#include_directories(include)
+include_directories(include)
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
@@ -133,6 +133,7 @@ include_directories(
 add_executable(
     sub_img_to_file_node
     src/sub_img_to_file_node.cpp
+    src/ros_image_to_file.cpp
 )
 
 ## Add cmake target dependencies of the executable
