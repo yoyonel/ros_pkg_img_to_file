@@ -132,8 +132,8 @@ include_directories(
 ## Declare a C++ executable
 add_executable(
     sub_img_to_file_node
-    src/sub_img_to_file_node.cpp
-    src/ros_image_to_file.cpp
+    src/node.cpp
+    src/lib/imagetofile.cpp
 )
 
 ## Add cmake target dependencies of the executable
