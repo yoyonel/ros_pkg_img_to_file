@@ -31,18 +31,19 @@ private:
      * @brief image_cb
      * @param msg
      */
-    void image_cb(const sensor_msgs::ImageConstPtr& msg);
+    void sub_cb(const sensor_msgs::ImageConstPtr& msg);
+
+    std::string build_filename(const ros::Time &_stamp);
+    inline std::string get_extension() const { return ".jpg"; }
 
 protected:
     ros::NodeHandle nh_;
 
 private:
     std::string prefix_;
+    bool show_image_;
 
-    bool b_show_image_;
-
-    std::string image_topic_;
-
+    std::string topic_name_;
     image_transport::Subscriber sub_;
 };
 
