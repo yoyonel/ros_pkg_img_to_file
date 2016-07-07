@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   cv_bridge
   image_transport
+    ros_tools
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,7 +105,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES sub_img_to_file
-  CATKIN_DEPENDS roscpp rospy std_msgs
+  CATKIN_DEPENDS roscpp rospy std_msgs ros_tools
   DEPENDS system_lib
 )
 
@@ -115,8 +116,10 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(include)
-include_directories(../tools)
+#include_directories(../tools)
 include_directories(${catkin_INCLUDE_DIRS})
+include_directories(${ros_tools_INCLUDE_DIRS})
+#MESSAGE(ros_tools_INCLUDE_DIRS: ${ros_tools_INCLUDE_DIRS})
 
 ## Declare a C++ library
 # add_library(sub_img_to_file
