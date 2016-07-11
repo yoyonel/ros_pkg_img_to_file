@@ -3,6 +3,7 @@
 
 #include <ros_image_to_file.h>
 #include <ros_tools/ros_macros.h>
+#include <opencv2/highgui/highgui.hpp>
 
 ImageToFile::ImageToFile (ros::NodeHandle _priv_nh, bool _b_show_image)
 {

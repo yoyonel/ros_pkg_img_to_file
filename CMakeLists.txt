@@ -10,11 +10,12 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   cv_bridge
   image_transport
-    ros_tools
+  ros_tools
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+find_package(OpenCV REQUIRED)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -106,7 +107,7 @@ catkin_package(
   INCLUDE_DIRS include
   LIBRARIES sub_img_to_file
   CATKIN_DEPENDS roscpp rospy std_msgs ros_tools
-  DEPENDS system_lib
+  DEPENDS system_lib ${OpenCV_LIBS}
 )
 
 ###########
@@ -148,6 +149,7 @@ add_dependencies(sub_img_to_file_node
 ## Specify libraries to link a library or executable target against
  target_link_libraries(sub_img_to_file_node
    ${catkin_LIBRARIES}
+   ${OpenCV_LIBS}
  )
 
 #############

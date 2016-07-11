@@ -2,9 +2,7 @@
 #define ROS_IMAGE_TO_FILE_H
 
 #include <image_transport/image_transport.h>
-#include <opencv2/highgui/highgui.hpp>
 #include <cv_bridge/cv_bridge.h>
-
 
 /**
  * @brief The ImageToFile class

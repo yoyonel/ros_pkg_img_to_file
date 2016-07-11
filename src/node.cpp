@@ -7,7 +7,9 @@
 #include <ros/ros.h>
 #include <string>
 
-#include "sub_img_to_file_node.h"
+#include <sub_img_to_file_node.h>
+#include <opencv2/highgui/highgui.hpp>
+
 
 int main(int argc, char **argv)
 {
