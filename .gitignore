@@ -1,6 +1,6 @@
 build/
 bin/
-lib/
+#lib/
 msg_gen/
 srv_gen/
 msg/*Action.msg
@@ -45,3 +45,7 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
+
+# on annule le filtre de lib car nos sources possedent
+# un tel repertoire ... (a voir si on ne doit pas changer)
+!lib/
