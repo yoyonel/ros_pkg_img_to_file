@@ -1,9 +1,14 @@
 #ifndef ROS_IMAGE_TO_FILE_CPP
 #define ROS_IMAGE_TO_FILE_CPP
 
+
 #include <ros_image_to_file.h>
 #include <ros_tools/ros_macros.h>
 #include <opencv2/highgui/highgui.hpp>
+
+
+static const std::string kOPENCV_WINDOW = "view";
+
 
 ImageToFile::ImageToFile (ros::NodeHandle _priv_nh, bool _b_show_image)
 {
@@ -39,17 +44,36 @@ bool ImageToFile::dump(const sensor_msgs::ImageConstPtr& _msg, const cv::Mat& _i
 }
 
 void ImageToFile::sub_cb(const sensor_msgs::ImageConstPtr& msg)
-{
-    try {
-        cv::Mat image = cv_bridge::toCvCopy(msg, "bgr8")->image;
-        dump( msg, image );
-        if( show_image_ ) {
-            cv::imshow("view", image);
-            cv::waitKey(30);
-        }
-    } catch (cv_bridge::Exception& e) {
-        ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
+{    
+    ROS_INFO_STREAM("Dans le callback de ImageToFile !");
+
+    cv_bridge::CvImagePtr cv_ptr;
+
+    try
+    {
+        cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
     }
+    catch (cv_bridge::Exception& e)
+    {
+        ROS_ERROR("cv_bridge exception: %s", e.what());
+        return;
+    }
+
+    // Update GUI Window
+    cv::imshow(kOPENCV_WINDOW, cv_ptr->image);
+    cv::waitKey(3);
+
+
+//    try {
+//        cv::Mat image = cv_bridge::toCvCopy(msg, "bgr8")->image;
+//        dump( msg, image );
+//        if( show_image_ ) {
+//            cv::imshow("view", image);
+//            cv::waitKey(30);
+//        }
+//    } catch (cv_bridge::Exception& e) {
+//        ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
+//    }
 }
 
 #endif // ROS_IMAGE_TO_FILE_CPP

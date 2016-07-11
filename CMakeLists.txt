@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(sub_img_to_file)
 
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${PROJECT_SOURCE_DIR}/cmake")
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -15,6 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+#SET(OpenCV_DIR /home/atty/Prog/OpenCV/opencv/install/3.1.0.1)
 find_package(OpenCV REQUIRED)
 
 
@@ -106,8 +109,8 @@ find_package(OpenCV REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES sub_img_to_file
-  CATKIN_DEPENDS roscpp rospy std_msgs ros_tools
-  DEPENDS system_lib ${OpenCV_LIBS}
+  CATKIN_DEPENDS roscpp rospy std_msgs ros_tools cv_bridge
+  DEPENDS system_lib
 )
 
 ###########
@@ -147,10 +150,10 @@ add_dependencies(sub_img_to_file_node
 )
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(sub_img_to_file_node
+target_link_libraries(sub_img_to_file_node
    ${catkin_LIBRARIES}
-   ${OpenCV_LIBS}
- )
+)
+#MESSAGE(catkin_LIBRARIES: ${catkin_LIBRARIES})
 
 #############
 ## Install ##

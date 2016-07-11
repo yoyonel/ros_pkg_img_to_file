@@ -17,17 +17,17 @@ int main(int argc, char **argv)
 
     ros::NodeHandle priv_nh("~");
 
-    bool b_show_image;
-    if ( priv_nh.getParam("show_image", b_show_image) && b_show_image )
-    {
-        ROS_INFO_STREAM("Show image recorded");
-        cv::namedWindow("view");
-        cv::startWindowThread();
-    }
+    bool b_show_image = false;
+//    if ( priv_nh.getParam("show_image", b_show_image) && b_show_image )
+//    {
+//        ROS_INFO_STREAM("Show image recorded");
+//        cv::namedWindow("view");
+//        cv::startWindowThread();
+//    }
 
     ImageToFile itof(priv_nh, b_show_image);
 
     ros::spin();
 
-    cv::destroyWindow("view");
+//    cv::destroyWindow("view");
 }
