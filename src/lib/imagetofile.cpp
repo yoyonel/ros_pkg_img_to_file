@@ -6,6 +6,7 @@
 #include <ros_tools/ros_macros.h>
 #include <opencv2/highgui/highgui.hpp>
 
+//#define USE_OPENCV_BRIDGE
 
 static const std::string kOPENCV_WINDOW = "view";
 
@@ -36,8 +37,10 @@ bool ImageToFile::dump(const sensor_msgs::ImageConstPtr& _msg, const cv::Mat& _i
 {
     const std::string filename = build_filename(_msg->header.stamp);
 
+#ifdef USE_OPENCV_BRIDGE
     // On écrit l'image
     cv::imwrite( filename, _image );
+#endif
 
     // Debug info
     ROS_INFO_STREAM("Write image file: " << filename);
@@ -47,6 +50,7 @@ void ImageToFile::sub_cb(const sensor_msgs::ImageConstPtr& msg)
 {    
     ROS_INFO_STREAM("Dans le callback de ImageToFile !");
 
+#ifdef USE_OPENCV_BRIDGE
 //    cv_bridge::CvImagePtr cv_ptr;
 //    try
 //    {
@@ -76,6 +80,7 @@ void ImageToFile::sub_cb(const sensor_msgs::ImageConstPtr& msg)
     } catch (cv_bridge::Exception& e) {
         ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
     }
+#endif
 }
 
 #endif // ROS_IMAGE_TO_FILE_CPP

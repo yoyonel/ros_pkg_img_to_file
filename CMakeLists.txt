@@ -20,6 +20,7 @@ find_package(catkin REQUIRED COMPONENTS
 SET(OpenCV_DIR /usr/share/OpenCV)
 find_package(OpenCV REQUIRED)
 MESSAGE( OpenCV_VERSION : ${OpenCV_VERSION} )
+MESSAGE( OpenCV_LIBS : ${OpenCV_LIBS} )
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -152,6 +153,7 @@ add_dependencies(sub_img_to_file_node
 ## Specify libraries to link a library or executable target against
 target_link_libraries(sub_img_to_file_node
    ${catkin_LIBRARIES}
+   ${OpenCV_LIBS}
 )
 #MESSAGE(catkin_LIBRARIES: ${catkin_LIBRARIES})
 
