@@ -17,9 +17,9 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-#SET(OpenCV_DIR /home/atty/Prog/OpenCV/opencv/install/3.1.0.1)
+SET(OpenCV_DIR /usr/share/OpenCV)
 find_package(OpenCV REQUIRED)
-
+MESSAGE( OpenCV_VERSION : ${OpenCV_VERSION} )
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
