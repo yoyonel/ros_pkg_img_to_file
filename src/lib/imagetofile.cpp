@@ -6,7 +6,8 @@
 #include <ros_tools/ros_macros.h>
 #include <opencv2/highgui/highgui.hpp>
 
-//#define USE_OPENCV_BRIDGE
+#include "config.h"
+//#define __USE_OPENCV_BRIDGE__
 
 static const std::string kOPENCV_WINDOW = "view";
 
@@ -37,7 +38,7 @@ bool ImageToFile::dump(const sensor_msgs::ImageConstPtr& _msg, const cv::Mat& _i
 {
     const std::string filename = build_filename(_msg->header.stamp);
 
-#ifdef USE_OPENCV_BRIDGE
+#ifdef _USE_OPENCV_BRIDGE_
     // On écrit l'image
     cv::imwrite( filename, _image );
 #endif
@@ -50,7 +51,7 @@ void ImageToFile::sub_cb(const sensor_msgs::ImageConstPtr& msg)
 {    
     ROS_INFO_STREAM("Dans le callback de ImageToFile !");
 
-#ifdef USE_OPENCV_BRIDGE
+#ifdef _USE_OPENCV_BRIDGE_
 //    cv_bridge::CvImagePtr cv_ptr;
 //    try
 //    {

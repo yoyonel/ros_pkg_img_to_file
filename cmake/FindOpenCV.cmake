@@ -76,6 +76,7 @@ if(EXISTS "${OpenCV_DIR}")
 
   #When its possible to use the Config script use it.
   if(EXISTS "${OpenCV_configScript}")
+    #MESSAGE(EXIST OpenCV_configScript : ${OpenCV_configScript})
 
     ## Include the standard CMake script
     include("${OpenCV_configScript}")

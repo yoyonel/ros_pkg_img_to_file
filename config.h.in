@@ -1,0 +1,6 @@
+#ifndef CONFIG_H_IN
+#define CONFIG_H_IN
+
+#cmakedefine _USE_OPENCV_BRIDGE_
+
+#endif // CONFIG_H_IN

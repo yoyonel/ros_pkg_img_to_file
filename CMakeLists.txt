@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(sub_img_to_file)
 
-set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${PROJECT_SOURCE_DIR}/cmake")
-
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -15,12 +13,38 @@ find_package(catkin REQUIRED COMPONENTS
   ros_tools
 )
 
+# url: https://cmake.org/cmake-tutorial/
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-SET(OpenCV_DIR /usr/share/OpenCV)
-find_package(OpenCV REQUIRED)
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${PROJECT_SOURCE_DIR}/cmake")
+SET(OpenCV_DIR /home/latty/Prog/install/opencv/2.4/share/OpenCV/)
+find_package(OpenCV)
+
 MESSAGE( OpenCV_VERSION : ${OpenCV_VERSION} )
 MESSAGE( OpenCV_LIBS : ${OpenCV_LIBS} )
+MESSAGE( OpenCV_INCLUDE_DIR : ${OpenCV_INCLUDE_DIR} )
+
+IF(OpenCV_LIBS STREQUAL "")
+    SET(_USE_OPENCV_BRIDGE_ OFF)
+ELSE(OpenCV_LIBS STREQUAL "")
+    SET(_USE_OPENCV_BRIDGE_ ON)
+ENDIF(OpenCV_LIBS STREQUAL "")
+#SET(_USE_OPENCV_BRIDGE_ ON)
+MESSAGE(_USE_OPENCV_BRIDGE_: ${_USE_OPENCV_BRIDGE_})
+#configure_file(include/config.h.in config.h)
+# configure a header file to pass some of the CMake settings
+# to the source code
+configure_file (
+  "${PROJECT_SOURCE_DIR}/config.h.in"
+  "${PROJECT_BINARY_DIR}/config.h"
+  )
+
+install (FILES "${PROJECT_BINARY_DIR}/config.h"
+         DESTINATION include)
+
+# add the binary tree to the search path for include files
+# so that we will find config.h
+include_directories ("${PROJECT_BINARY_DIR}")
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -142,6 +166,7 @@ add_executable(
     src/node.cpp
     src/lib/imagetofile.cpp
 )
+
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
