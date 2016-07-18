@@ -29,7 +29,7 @@ IF(OpenCV_LIBS STREQUAL "")
 ELSE(OpenCV_LIBS STREQUAL "")
     SET(_USE_OPENCV_BRIDGE_ ON)
 ENDIF(OpenCV_LIBS STREQUAL "")
-#SET(_USE_OPENCV_BRIDGE_ ON)
+SET(_USE_OPENCV_BRIDGE_ ON)
 MESSAGE(_USE_OPENCV_BRIDGE_: ${_USE_OPENCV_BRIDGE_})
 #configure_file(include/config.h.in config.h)
 # configure a header file to pass some of the CMake settings

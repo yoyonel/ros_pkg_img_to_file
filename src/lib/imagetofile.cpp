@@ -49,7 +49,7 @@ bool ImageToFile::dump(const sensor_msgs::ImageConstPtr& _msg, const cv::Mat& _i
 
 void ImageToFile::sub_cb(const sensor_msgs::ImageConstPtr& msg)
 {    
-    ROS_INFO_STREAM("Dans le callback de ImageToFile !");
+//    ROS_INFO_STREAM("Dans le callback de ImageToFile !");
 
 #ifdef _USE_OPENCV_BRIDGE_
 //    cv_bridge::CvImagePtr cv_ptr;
